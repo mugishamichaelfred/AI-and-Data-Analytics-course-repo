@@ -11,7 +11,7 @@ image = np.array(china, dtype=np.float32) / 255.0
 pixel_values = image.reshape((-1, 3)) # reshape to [num_pixels, 3]
 
 # define the number of clusters (k) and apply k-means
-k = 4 # number of clusters
+k = 100 # number of clusters
 kmeans = KMeans(n_clusters=k, random_state=0)
 kmeans.fit(pixel_values)
 
@@ -37,11 +37,4 @@ plt.figure(figsize=(8, 8))
 plt.imshow(segmented_image)
 plt.title(f"Segmented Image (k={k})")
 plt.axis('off')
-
-# next is to add labels to the segmented image
-for i, (x, y) in enumerate(positions):
-    plt.text(
-        x, y, f"Segment {i + 1}", color = "yellow", fontsize=12,
-        ha = "center", va = "center", bbox = dict(boxstyle="round, pad=0.3", edgecolor='black', facecolor='black')
-    )
 plt.show()
